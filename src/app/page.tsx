@@ -1,101 +1,157 @@
-import Image from "next/image";
+'use client'
+import { Carousel, CarouselSlide } from "@mantine/carousel";
+import { ActionIcon, Anchor, BackgroundImage, Box, Button, Container, Divider, Flex, Group, Image, Stack, Text } from "@mantine/core";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
+import { AiFillTikTok } from "react-icons/ai";
+import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <Box>
+      <Stack>
+        <Box>
+          <HeaderTop />
+          <Header />
+          <Box1 />
+        </Box>
+      </Stack>
+    </Box>
   );
+}
+
+export function HeaderTop() {
+  return (
+    <Box>
+      <Box bg={"#e6e6e6"} p={7}>
+        <Box pr={80}>
+          <Flex direction={"row"} gap={"xs"} align={"center"} justify={"right"}>
+            <Anchor underline="never">
+              <Text fw={"bold"} c={"black"} fz={"11"}>CONTACT</Text>
+            </Anchor>
+            <ActionIcon size={"xs"} variant="transparent">
+              <Divider size={"xs"} orientation="vertical" />
+            </ActionIcon>
+            <Anchor underline="never">
+              <Text fw={"bold"} c={"black"} fz={"11"}>CAREER</Text>
+            </Anchor>
+            <ActionIcon size={"xs"} variant="transparent">
+              <Divider size={"xs"} orientation="vertical" />
+            </ActionIcon>
+            <Anchor underline="never">
+              <Text fw={"bold"} c={"black"} fz={"11"}>DOWNLOAD CK APP</Text>
+            </Anchor>
+            <ActionIcon size={"xs"} variant="transparent">
+              <Divider size={"xs"} orientation="vertical" />
+            </ActionIcon>
+            <Text fw={"bold"} c={"black"} fz={"11"}>Follow us:</Text>
+            <ActionIcon variant="transparent">
+              <FaInstagram color={"black"} size={15} />
+            </ActionIcon>
+            <ActionIcon size={"xs"} variant="transparent">
+              <Divider size={"xs"} orientation="vertical" />
+            </ActionIcon>
+            <ActionIcon size={"xs"} variant="transparent">
+              <FaFacebook color={"black"} size={15} />
+            </ActionIcon>
+            <ActionIcon size={"xs"} variant="transparent">
+              <Divider size={"xs"} orientation="vertical" />
+            </ActionIcon>
+            <ActionIcon size={"xs"} variant="transparent">
+              <AiFillTikTok color={"black"} size={17} />
+            </ActionIcon>
+            <ActionIcon size={"xs"} variant="transparent">
+              <Divider size={"xs"} orientation="vertical" />
+            </ActionIcon>
+            <ActionIcon size={"xs"} variant="transparent">
+              <FaYoutube color={"black"} size={15} />
+            </ActionIcon>
+          </Flex>
+        </Box>
+      </Box>
+    </Box>
+  )
+}
+export function Header() {
+  return (
+    <Box p={12} bg={"#ec1c24"}>
+      <Container size={"lg"}>
+        <Flex direction={"row"} align={"center"} gap={"lg"} justify={"space-between"} >
+          <Box>
+            <Flex direction={"row"} align={"center"} gap={"lg"} >
+              <Image src={"/Assets/Image/Logo.png"} alt="" w={"210px"} />
+              <Anchor underline="never">
+                <Text fw={"bold"} c={"white"} fz={"sm"}>About Us</Text>
+              </Anchor>
+              <Anchor underline="never">
+                <Text fw={"bold"} c={"white"} fz={"sm"}>PRODUCTS</Text>
+              </Anchor>
+              <Anchor underline="never">
+                <Text fw={"bold"} c={"white"} fz={"sm"}>PROMOTION</Text>
+              </Anchor>
+              <Anchor underline="never">
+                <Text fw={"bold"} c={"white"} fz={"sm"}>NEWS & BLOG</Text>
+              </Anchor>
+              <Anchor underline="never">
+                <Text fw={"bold"} c={"white"} fz={"sm"}>FRANCHISE</Text>
+              </Anchor>
+              <Anchor underline="never">
+                <Text fw={"bold"} c={"white"} fz={"sm"}>FINANCIAL SERVICES</Text>
+              </Anchor>
+            </Flex>
+          </Box>
+          <Box>
+            <Button radius={"xl"} bg={"#fb3"}>
+              <Box pt={5} pb={5}>
+                <Flex direction={"column"} >
+                  <Text ta={"start"} size="xs" fw={"bold"} c={"white"}>
+                    DOWNLOAD MOBILE
+                  </Text>
+                  <Text ta={"start"} size="xs" fw={"bold"} c={"white"}>
+                    APP
+                  </Text>
+                </Flex>
+              </Box>
+            </Button>
+          </Box>
+        </Flex>
+      </Container>
+    </Box>
+  );
+}
+export function Box1() {
+  const autoplay = useRef(Autoplay({ delay: 3000 }));
+  return (
+    <Box>
+      <Box h={500}>
+        <Carousel
+          withIndicators height={500}
+          align="start"
+          loop
+          plugins={[autoplay.current]}
+          onMouseEnter={autoplay.current.stop}
+          onMouseLeave={autoplay.current.reset}
+        >
+          <CarouselSlide>
+            <BackgroundImage src={"Assets/Image/CkSlider1.jpg"} w={"1440"} h={"500"}>
+              <Box>
+                <Group >
+                  <Stack gap={"0"} pt={60} pl={80}>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bolder"} c={"white"} fz={"8vmin"}>Momen</Text>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bold"} c={"white"} fz={"8vmin"}>Kumpul</Text>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bold"} c={"white"} fz={"8vmin"}>Bersama jadi</Text>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bold"} c={"white"} fz={"8vmin"}>Lebih</Text>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bold"} c={"white"} fz={"8vmin"}>Berwarna!</Text>
+                  </Stack>
+                </Group>
+                <Text pt={20} pl={80} ta={"left"} c={"white"} fz={"md"}>Layanan terbaik untuk anda</Text>
+              </Box>
+            </BackgroundImage>
+          </CarouselSlide>
+          <CarouselSlide>2</CarouselSlide>
+          <CarouselSlide>3</CarouselSlide>
+        </Carousel>
+      </Box>
+    </Box>
+  )
 }
