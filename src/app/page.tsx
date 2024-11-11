@@ -2,9 +2,10 @@
 import { Carousel, CarouselSlide } from "@mantine/carousel";
 import { ActionIcon, Anchor, BackgroundImage, Box, Button, Container, Divider, Flex, Group, Image, Stack, Text } from "@mantine/core";
 import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { AiFillTikTok } from "react-icons/ai";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
 
 export function HeaderTop() {
   return (
-    <Box>
+    <Box w={"100%"}  style={{ zIndex: 99 }} pos={"fixed"}>
       <Box bg={"#e6e6e6"} p={7}>
         <Box pr={80}>
           <Flex direction={"row"} gap={"xs"} align={"center"} justify={"right"}>
@@ -73,8 +74,9 @@ export function HeaderTop() {
   )
 }
 export function Header() {
+  const [hovered, setHovered] = useState(false);
   return (
-    <Box p={12} bg={"#ec1c24"}>
+    <Box top={40} w={"100%"} style={{ zIndex: 99 }} pos={"fixed"} p={12} bg={"#ec1c24"}>
       <Container size={"lg"}>
         <Flex direction={"row"} align={"center"} gap={"lg"} justify={"space-between"} >
           <Box>
@@ -101,13 +103,29 @@ export function Header() {
             </Flex>
           </Box>
           <Box>
-            <Button radius={"xl"} bg={"#fb3"}>
+            <Button
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              radius={"xl"}
+              bg={hovered ? "white" : "#fb3"}>
               <Box pt={5} pb={5}>
                 <Flex direction={"column"} >
-                  <Text ta={"start"} size="xs" fw={"bold"} c={"white"}>
+                  <Text
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => setHovered(false)}
+                    ta={"start"}
+                    size="xs"
+                    fw={"bold"}
+                    c={hovered ? "#ec1c24" : "white"}>
                     DOWNLOAD MOBILE
                   </Text>
-                  <Text ta={"start"} size="xs" fw={"bold"} c={"white"}>
+                  <Text
+                    ta={"start"}
+                    size="xs"
+                    fw={"bold"}
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => setHovered(false)}
+                    c={hovered ? "#ec1c24" : "white"}>
                     APP
                   </Text>
                 </Flex>
@@ -121,11 +139,13 @@ export function Header() {
 }
 export function Box1() {
   const autoplay = useRef(Autoplay({ delay: 3000 }));
+  const [hovered, setHovered] = useState(false);
   return (
-    <Box>
-      <Box h={500}>
+    <Box pos={"relative"} pt={120}>
+      <Box>
         <Carousel
-          withIndicators height={500}
+          withIndicators
+          height={600}
           align="start"
           loop
           plugins={[autoplay.current]}
@@ -133,7 +153,7 @@ export function Box1() {
           onMouseLeave={autoplay.current.reset}
         >
           <CarouselSlide>
-            <BackgroundImage src={"Assets/Image/CkSlider1.jpg"} w={"1440"} h={"500"}>
+            <BackgroundImage src={"Assets/Image/CkSlider1.jpg"} w={"100%"} h={"100%"}>
               <Box>
                 <Group >
                   <Stack gap={"0"} pt={60} pl={80}>
@@ -144,14 +164,97 @@ export function Box1() {
                     <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bold"} c={"white"} fz={"8vmin"}>Berwarna!</Text>
                   </Stack>
                 </Group>
-                <Text pt={20} pl={80} ta={"left"} c={"white"} fz={"md"}>Layanan terbaik untuk anda</Text>
+                <Text pt={20} pl={80} ta={"left"} c={"white"} fz={"md"}>Jadi bisa jajan enak dan hemat sepuasnya</Text>
+                <Box pt={20} pl={80}>
+                  <Group>
+                    <Button
+                      radius={"xl"}
+                      onMouseEnter={() => setHovered(true)}
+                      onMouseLeave={() => setHovered(false)}
+                      bg={hovered ? "#fb3" : "#ec1c24"}>
+                      <Group>
+                        <Text fz={"sm"}>CHECK IT OUT </Text>
+                        <FaArrowRightLong size={15}/>
+                      </Group>
+                    </Button>
+                  </Group>
+                </Box>
               </Box>
             </BackgroundImage>
           </CarouselSlide>
-          <CarouselSlide>2</CarouselSlide>
-          <CarouselSlide>3</CarouselSlide>
+          <CarouselSlide >
+            <BackgroundImage src={"Assets/Image/CKSlider2.jpg"} w={"100%"} h={"100%"}>
+              <Box pl={30} pt={120}>
+                <Group >
+                  <Stack gap={"0"} justify="center" pt={60} pl={80}>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bolder"} c={"white"} fz={"8vmin"}>Berdonasi &</Text>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bold"} c={"white"} fz={"8vmin"}>Berbelanja</Text>
+                  </Stack>
+                </Group>
+                <Text pt={20} pl={80} ta={"left"} c={"white"} fz={"md"}>Bantu wujudkan impian para generasi penerus bangsa</Text>
+              </Box>
+            </BackgroundImage>
+          </CarouselSlide>
+          <CarouselSlide>
+            <BackgroundImage src={"Assets/Image/CkSlider3.jpg"} w={"100%"} h={"100%"}>
+              <Box>
+                <Group >
+                  <Stack gap={"0"} pt={60} pl={80}>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bolder"} c={"white"} fz={"8vmin"}>Menangkan Hadiah</Text>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bold"} c={"white"} fz={"8vmin"}>Senilai</Text>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bold"} c={"white"} fz={"8vmin"}>Jutaan Rupiah!</Text>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bold"} c={"white"} fz={"8vmin"}>Rupiah!</Text>
+                  </Stack>
+                </Group>
+                <Text pt={20} pl={80} ta={"left"} c={"white"} fz={"md"}>Jajan sebanyak-banyaknya agar kesempatan kamu menang</Text>
+                <Text pl={80} ta={"left"} c={"white"} fz={"md"}>lebih besar</Text>
+                <Box pt={20} pl={80}>
+                  <Group>
+                    <Button
+                      radius={"xl"}
+                      onMouseEnter={() => setHovered(true)}
+                      onMouseLeave={() => setHovered(false)}
+                      bg={hovered ? "#fb3" : "#ec1c24"}>
+                      <Group>
+                        <Text fz={"sm"}>CHECK IT OUT </Text>
+                        <FaArrowRightLong size={15}/>
+                      </Group>
+                    </Button>
+                  </Group>
+                </Box>
+              </Box>
+            </BackgroundImage>
+          </CarouselSlide>
+          <CarouselSlide>
+            <BackgroundImage src={"Assets/Image/CKSlider4.jpg"} w={"100%"} h={"100%"}>
+              <Box>
+                <Group >
+                  <Stack gap={"0"} pt={150} pl={100}>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bolder"} c={"white"} fz={"8vmin"}>Saldo habis?</Text>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bold"} c={"white"} fz={"8vmin"}>Nggak perlu</Text>
+                    <Text style={{ lineHeight: "1em" }} ta={"left"} fw={"bold"} c={"white"} fz={"8vmin"}>khawatir!</Text>
+                  </Stack>
+                </Group>
+                <Text pt={20} pl={100} ta={"left"} c={"white"} fz={"md"}>Sekarang bisa top up e-money di Circle K</Text>
+                <Box pt={20} pl={100}>
+                  <Group>
+                    <Button
+                      radius={"xl"}
+                      onMouseEnter={() => setHovered(true)}
+                      onMouseLeave={() => setHovered(false)}
+                      bg={hovered ? "#fb3" : "#ec1c24"}>
+                      <Group>
+                        <Text fz={"sm"}>CHECK IT OUT </Text>
+                        <FaArrowRightLong size={15}/>
+                      </Group>
+                    </Button>
+                  </Group>
+                </Box>
+              </Box>
+            </BackgroundImage>
+          </CarouselSlide>
         </Carousel>
-      </Box>
-    </Box>
+      </Box >
+    </Box >
   )
 }
